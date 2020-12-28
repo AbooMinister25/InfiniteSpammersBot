@@ -22,4 +22,4 @@ if __name__ == '__main__':
     for extension in extensions:
         bot.load_extension(extension)
 
-bot.run("NzQ1Mzk5MDQzMDY0MjAxMjU3.XzxM9A.tSf5U4RuvupmJNb1HjdzAV87Jso")
+bot.run(get_token())
