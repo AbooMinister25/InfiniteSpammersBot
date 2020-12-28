@@ -1,7 +1,8 @@
 import discord
 from discord.ext import commands
 
-cogs = ("ResourcesCog", "ModerationCog", "SilencerCog", "SlowmodeCog", "PollCog")
+cogs = ("ResourcesCog", "ModerationCog",
+        "SilencerCog", "SlowmodeCog", "PollCog")
 
 
 class ResourcesCog(commands.Cog):
@@ -21,8 +22,6 @@ class ResourcesCog(commands.Cog):
                 name="Features", value="Use `!help features` to view information on all of the features and things that this bot automates.", inline=False)
             embed.add_field(
                 name="Roles", value="You can head over to the #roles channel to claim your roles. Claiming these roles is optional. There are roles for pings, and roles used to classify you.", inline=False)
-            embed.add_field(
-                name="Rules", value="Make sure to check #rules when you first join, and make sure to abide by the rules. Each member of staff has the authority to punish you how they deem fit if you break the rules. If you have any moderation related concerns, contact the moderators. Use !rule [rule_num] to view information on a rule.", inline=False)
         elif argument.lower() in ("cog", "cogs"):
             embed = discord.Embed(title=":grey_question: Help: Cogs",
                                   description="The help message for all of the bots cogs. Use !help [command] to get help on a specific command, or do !help to view the default help page.", color=discord.Colour.blue())
@@ -41,6 +40,30 @@ class ResourcesCog(commands.Cog):
                 name="Resources", value="Use !help resources to view information on the Resources cog. This cog includes commands that are used to view server resources, such as !help.", inline=False)
             embed.set_footer(
                 text=f"!help [command] for specific information on a single command. !help [cog] for information on a cog. !help [section] for information on a section")
+        elif argument.lower() in ("help"):
+            embed = discord.Embed(title=":grey_question: Help",
+                                  description="The help page for the Help section of the bot", color=discord.Colour.teal())
+            embed.add_field(
+                name="Getting Help", value="You can get help on something using the `!help` command, and navigating around its options. Feel free to DM the staff if you need anything.")
+        elif argument.lower() in ("features", "feature"):
+            embed = discord.Embed(title=":grey_question: Features",
+                                  description="The help message for the Features section of the bot.", color=discord.Colour.dark_green())
+            embed.add_field(name="Changing General Name", value="The servers general name changes every 24 hours, these names are formatted as `general-whatevername`. The names switch between inside jokes and precious metals. You can learn more about this by doing `!help automation`.", inline=False)
+            embed.add_field(
+                name="Reaction Roles", value="In the #roles channel in the server, you can react to messages left by carl bot in order to claim yourself roles.", inline=False)
+        elif argument.lower() in ("roles", "role"):
+            embed = discord.Embed(title=":grey_question: Roles", description="The help message for the Roles section of the bot. All of the roles are listed from high to low in terms of ranking.", color=discord.Colour.dark_blue())
+            embed.add_field(name="Admin", value="Admin is the highest role in the server. Members with this role have administrator privilages and manage and moderate the server. The admins enforce the rules and manage the server.", inline=True)
+            embed.add_field(name="Moderator", value="Moderators are the rule enforcers of the server. Members who have this role have perms to mute/ban people, as well as silence channels. Moderators are allowed to punish people who don't follow the rules however they deem fit.", inline=True)
+            embed.add_field(name="Dev", value="Devs manage the server. The main job of a Dev is to manage and keep in track of the server. Devs have permissions to edit the server and delete and make channels and categories.", inline=True)
+            embed.add_field(name="Software Dev", value="Software Devs are members that partake in the development of the Infinite Spammers Bot, as well as other projects. Members who have this role don't get any extra permissions, but are considered staff.", inline=True)
+            embed.add_field(name="Newsletter", value="People with the Newsletter role are members that help out with the Infinite Spammers Newsletter. They don't have any extra permissions, but are considered staff.", inline=True)
+            embed.add_field(name="Citizen", value="Citizen is the default role that is given to new members that join the server. People with this role have default permissions, and includes the majority of the servers members.", inline=True)
+            embed.add_field(name="Pronouns", value="The server has three pronoun roles you can claim in #roles. He/Him, She/Her, and They/Them. Claiming these roles is strictly optional.", inline=True)
+            embed.add_field(name="Location", value="The server has several location roles you can claim in #roles. North America, South America, Asia, Europe, Africa and Australia. Claiming these roles is strictly optional.", inline=True)
+            embed.add_field(name="Age", value="The server has two age roles. <18 and >18. Claiming these roles is strictly optional.", inline=True)
+            embed.add_field(name="Crewmates", value="The Crewmates role is a pinging role that people can claim if they want to be pinged for playing Among Us.", inline=True)
+            embed.add_field(name="Game Night", value="The Game Night role is a pinging role that people can claim if they want to be pinged for any game nights.", inline=True)
         elif argument.lower() in ("moderation", "mods", "moderators", "moderator"):
             embed = discord.Embed(title=":grey_question: Help: Moderation",
                                   description="The help message on the moderation cog. Use !help [command] for specific information on a command.", color=discord.Colour.purple())
@@ -88,14 +111,15 @@ class ResourcesCog(commands.Cog):
             for i in self.bot.cogs:
                 for command in self.bot.get_cog(i).get_commands():
                     if str(argument) == str(command):
-                        embed = discord.Embed(title=f":grey_question: Help: {command}", description=command.help, color=discord.Colour.blue())
+                        embed = discord.Embed(
+                            title=f":grey_question: Help: {command}", description=command.help, color=discord.Colour.blue())
                         found = True
                         break
                     else:
                         print(command)
             if not found:
-                embed = discord.Embed(title=f":x: No help found on command {argument}", color=discord.Colour.red())
-            
+                embed = discord.Embed(
+                    title=f":x: No help found on command {argument}", color=discord.Colour.red())
 
         await ctx.channel.send(embed=embed)
 
