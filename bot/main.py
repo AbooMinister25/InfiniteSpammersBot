@@ -15,7 +15,9 @@ extensions = [
     "utilities.utils",
     "utilities.serverconfig",
     "utilities.poll",
-    "utilities.resources"
+    "utilities.resources",
+    "server.server",
+    "server.errors"
 ]
 
 if __name__ == '__main__':

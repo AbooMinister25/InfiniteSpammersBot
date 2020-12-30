@@ -582,7 +582,7 @@ async def on_command_error(ctx, error):
         await ctx.channel.send("You are not authorized to use this command")
     elif isinstance(error, commands.errors.MissingRequiredArgument):
         await ctx.channel.send("Please enter the correct number of arguments for this command, do !help(command-name) for further help with this command")
-    elif isinstance(error, discord.ext.commands.errors.MemberNotFound):
+    elif isinstance(error, commands.errors.MemberNotFound):
         await ctx.channel.send(f"Invalid member given, {error}")
     else:
         raise error
@@ -595,8 +595,6 @@ async def on_member_join(member: discord.Member):
                      f"Hey {member}, feeling good about this server yet?"]
     channel = bot.get_channel(791453623379951638)
     message = rd.choice(join_messages)
-    user = {f"{member}": 0}
-    json.dump(user)
     await channel.send(message)
 
 

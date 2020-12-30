@@ -48,22 +48,27 @@ class ResourcesCog(commands.Cog):
         elif argument.lower() in ("features", "feature"):
             embed = discord.Embed(title=":grey_question: Features",
                                   description="The help message for the Features section of the bot.", color=discord.Colour.dark_green())
-            embed.add_field(name="Changing General Name", value="The servers general name changes every 24 hours, these names are formatted as `general-whatevername`. The names switch between inside jokes and precious metals. You can learn more about this by doing `!help automation`.", inline=False)
+            embed.add_field(name="Changing General Name", value="The servers general name changes every 24 hours, these names are formatted as `general-whatevername`. The names switch between inside jokes and precious metals. You can learn more about this by doing `!help general`.", inline=False)
             embed.add_field(
                 name="Reaction Roles", value="In the #roles channel in the server, you can react to messages left by carl bot in order to claim yourself roles.", inline=False)
         elif argument.lower() in ("roles", "role"):
-            embed = discord.Embed(title=":grey_question: Roles", description="The help message for the Roles section of the bot. All of the roles are listed from high to low in terms of ranking.", color=discord.Colour.dark_blue())
+            embed = discord.Embed(title=":grey_question: Roles",
+                                  description="The help message for the Roles section of the bot. All of the roles are listed from high to low in terms of ranking.", color=discord.Colour.dark_blue())
             embed.add_field(name="Admin", value="Admin is the highest role in the server. Members with this role have administrator privilages and manage and moderate the server. The admins enforce the rules and manage the server.", inline=True)
             embed.add_field(name="Moderator", value="Moderators are the rule enforcers of the server. Members who have this role have perms to mute/ban people, as well as silence channels. Moderators are allowed to punish people who don't follow the rules however they deem fit.", inline=True)
             embed.add_field(name="Dev", value="Devs manage the server. The main job of a Dev is to manage and keep in track of the server. Devs have permissions to edit the server and delete and make channels and categories.", inline=True)
             embed.add_field(name="Software Dev", value="Software Devs are members that partake in the development of the Infinite Spammers Bot, as well as other projects. Members who have this role don't get any extra permissions, but are considered staff.", inline=True)
             embed.add_field(name="Newsletter", value="People with the Newsletter role are members that help out with the Infinite Spammers Newsletter. They don't have any extra permissions, but are considered staff.", inline=True)
             embed.add_field(name="Citizen", value="Citizen is the default role that is given to new members that join the server. People with this role have default permissions, and includes the majority of the servers members.", inline=True)
-            embed.add_field(name="Pronouns", value="The server has three pronoun roles you can claim in #roles. He/Him, She/Her, and They/Them. Claiming these roles is strictly optional.", inline=True)
+            embed.add_field(
+                name="Pronouns", value="The server has three pronoun roles you can claim in #roles. He/Him, She/Her, and They/Them. Claiming these roles is strictly optional.", inline=True)
             embed.add_field(name="Location", value="The server has several location roles you can claim in #roles. North America, South America, Asia, Europe, Africa and Australia. Claiming these roles is strictly optional.", inline=True)
-            embed.add_field(name="Age", value="The server has two age roles. <18 and >18. Claiming these roles is strictly optional.", inline=True)
-            embed.add_field(name="Crewmates", value="The Crewmates role is a pinging role that people can claim if they want to be pinged for playing Among Us.", inline=True)
-            embed.add_field(name="Game Night", value="The Game Night role is a pinging role that people can claim if they want to be pinged for any game nights.", inline=True)
+            embed.add_field(
+                name="Age", value="The server has two age roles. <18 and >18. Claiming these roles is strictly optional.", inline=True)
+            embed.add_field(
+                name="Crewmates", value="The Crewmates role is a pinging role that people can claim if they want to be pinged for playing Among Us.", inline=True)
+            embed.add_field(
+                name="Game Night", value="The Game Night role is a pinging role that people can claim if they want to be pinged for any game nights.", inline=True)
         elif argument.lower() in ("moderation", "mods", "moderators", "moderator"):
             embed = discord.Embed(title=":grey_question: Help: Moderation",
                                   description="The help message on the moderation cog. Use !help [command] for specific information on a command.", color=discord.Colour.purple())
@@ -121,6 +126,12 @@ class ResourcesCog(commands.Cog):
                 embed = discord.Embed(
                     title=f":x: No help found on command {argument}", color=discord.Colour.red())
 
+        await ctx.channel.send(embed=embed)
+
+    @commands.command(aliases=["git", "source"], brief="`!github`. Used for displaying the link to the bots github.", help="`!github`. Used for displaying the link to the bots github.")
+    async def github(self, ctx):
+        embed = discord.Embed(title="Infinite Spammers Bot Source Code",
+                              description="https://github.com/AbooMinister25/InfiniteSpammersBot")
         await ctx.channel.send(embed=embed)
 
 
