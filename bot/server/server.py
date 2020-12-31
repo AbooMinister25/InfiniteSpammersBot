@@ -9,9 +9,7 @@ with open("data.json", "r") as f:
 
 generalNames = data["general-names"]
 customGeneralNames = data["custom-general-names"]
-topics = data["topics"]
-requestedGeneralNames = []
-requestedTopics = []
+
 
 def get_join_message(member):
     join_messages = (f"Welcome to our server, {member}, have fun!", f"It was getting quiet, glad you showed up {member}!", f"Hey, {member}, why'd it take you so long to get here?",

@@ -38,8 +38,7 @@ class ResourcesCog(commands.Cog):
             embed.add_field(name="Utils", value="Use !help utils to view information on the Utils cog. This cog has utility commands that can be used to view information and perform other small tasks.", inline=False)
             embed.add_field(
                 name="Resources", value="Use !help resources to view information on the Resources cog. This cog includes commands that are used to view server resources, such as !help.", inline=False)
-            embed.set_footer(
-                text=f"!help [command] for specific information on a single command. !help [cog] for information on a cog. !help [section] for information on a section")
+            embed.add_field(name="General", value="Use !help general to view information on the General cog. This cog includes commands that are used to request, approve, and delete general names.", inline=False)
         elif argument.lower() in ("help"):
             embed = discord.Embed(title=":grey_question: Help",
                                   description="The help page for the Help section of the bot", color=discord.Colour.teal())
@@ -108,6 +107,12 @@ class ResourcesCog(commands.Cog):
         elif argument.lower() in ("resources", "resource"):
             embed = discord.Embed(title=":grey_question: Help: Resources",
                                   description="The help message on the resources cog. Use !help [command] for specific information on a command.", color=discord.Colour.purple())
+            for i in self.bot.get_cog("ResourcesCog").get_commands():
+                if not i.hidden:
+                    embed.add_field(name=i.name, value=i.brief, inline=False)
+        elif argument.lower() in ("general"):
+            embed = discord.Embed(title=":grey_question: Help: General",
+                                  description="The help message on the general cog. Use !help [command] for specific information on a command.", color=discord.Colour.purple())
             for i in self.bot.get_cog("ResourcesCog").get_commands():
                 if not i.hidden:
                     embed.add_field(name=i.name, value=i.brief, inline=False)
