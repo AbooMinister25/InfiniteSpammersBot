@@ -28,6 +28,8 @@ class ErrorCog(commands.Cog):
         if isinstance(error, commands.MemberNotFound):
             embed = discord.Embed(
                 title=f":x: Specified member could not be found", color=discord.Colour.red())
+        else:
+            embed = discord.Embed(title=f"Error: {error}", color=discord.Colour.red())
 
         await ctx.channel.send(embed=embed)
 

@@ -5,6 +5,7 @@ import wikipedia
 from newsapi import NewsApiClient
 import json
 import random
+from typing import Optional
 
 
 dictionary = PyDictionary()
@@ -219,7 +220,7 @@ class UtilsCog(commands.Cog):
         embed.add_footer(text="Request new topics with `!request-topic`.")
         await ctx.channel.send(embed=embed)
 
-    @commands.command(name="request-topic", aliases=["rt"], brief="`!request-topic [topic]`. Used to request a new topic.", help="`!request-topic [topic]`. Used to request a new topic. Requested topics then have to be approved by a moderator.")
+    @commands.command(name="request-topic", brief="`!request-topic [topic]`. Used to request a new topic.", help="`!request-topic [topic]`. Used to request a new topic. Requested topics then have to be approved by a moderator.")
     async def request_topic(self, ctx, topic):
         requested_topics.append(topic)
 
@@ -252,6 +253,25 @@ class UtilsCog(commands.Cog):
             await ctx.channel.send(f":white_check_mark: Topic {topic} successfully removed.")
         else:
             await ctx.channel.send(f":x: Topic {topic} could not be found.")
+
+    @commands.command(aliases=["ᓚᘏᗢ", "ᓚᘏᗢify"])
+    async def catify(self, ctx, string: Optional[str] = None) -> None:
+        if string is None:
+            if len(ctx.author.name) > 28:
+                await ctx.send("Your name exceeds character limits after catification. Please change your name!")
+            else:
+                await ctx.author.edit(nick=ctx.author.name + "ᓚᘏᗢ")
+        else:
+            string_list = string.split()
+            for index, name in enumerate(string_list):
+                if "cat" in name:
+                    string_list[index] = string_list[index].replace("cat", 'ᓚᘏᗢ')
+
+            for i in range(random.randint(1, len(string_list)//3)):
+                # insert cat at random index
+                string_list.insert(random.randint(0, len(string_list)-1), "ᓚᘏᗢ")
+
+            await ctx.channel.send(" ".join(string_list))
 
 
 def setup(bot):

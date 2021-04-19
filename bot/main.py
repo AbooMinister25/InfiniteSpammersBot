@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 def get_token():
-    with open("token.txt") as f:
+    with open("bot/token.txt") as f:
         token = f.read()
     return token
 
