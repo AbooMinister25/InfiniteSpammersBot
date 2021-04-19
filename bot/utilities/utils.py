@@ -262,7 +262,7 @@ class UtilsCog(commands.Cog):
             else:
                 await ctx.author.edit(nick=ctx.author.name + "ᓚᘏᗢ")
         else:
-            string_list = string.split()
+            string_list = string[6:len(string)].split()
             for index, name in enumerate(string_list):
                 if "cat" in name:
                     string_list[index] = string_list[index].replace("cat", 'ᓚᘏᗢ')
